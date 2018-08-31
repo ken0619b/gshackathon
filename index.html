@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+            こねこテラ
+            テストｗｗｗｗｗｗｗｗｗｗｗｗ
+    </header>
+    
+    <div class="main">
+        <p>aaaaaaa</p>
+        <p>aaaaaaa</p>
+        <p>aaaaaaa</p>
+        <p>aaaaaaa</p>
+        <p>aaaaaaa</p>
+        <p>aaaaaaa</p>
+    </div>
+    
+    <div class="side">
+        <div class="questions"></div>
+        <input type="text" id="q" />
+        <button id='addQuestion'>質問する！</button>
+    </div>
+    
+    <footer class="footer">
+        footer(w480px h50px)
+    </footer>
+
+    
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script>
+
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDp8pHdwufOls9KQOVyXqGkYOBOSHbsyWo",
+        authDomain: "gshackathon-0831.firebaseapp.com",
+        databaseURL: "https://gshackathon-0831.firebaseio.com",
+        projectId: "gshackathon-0831",
+        storageBucket: "gshackathon-0831.appspot.com",
+        messagingSenderId: "494322489954"
+      };
+
+      firebase.initializeApp(config);
+      var questionRef = firebase.database().ref('questions');
+
+      // 質問投稿ボタン押下
+      $('#addQuestion').click(function(){
+        console.log('add question')
+        var _content = $('#q').val();
+
+        // firebase更新
+        var currentQuestions = []
+        questionRef.once('value', function(snapshot){
+            console.log(snapshot.val().data)
+            currentQuestions = snapshot.val().data
+            //console.log(snapshot.val()[0]) //key一覧取れる？
+        });
+
+        // 今の質問を追加
+        currentQuestions.push(_content);
+
+        questionRef.set({
+            data: currentQuestions
+        });
+      });
+
+      // 質問に更新がある場合
+      questionRef.on('value', function(snapshot){
+          console.log(snapshot.val().data)
+          questions = snapshot.val().data
+          // reset
+          $('.questions').empty();
+
+          // set questions
+          $.each(questions, function(i, q){
+            $('.questions').append(`<p>${q}</p>`);
+          });
+      });
+
+    </script>
+</body>
+
+</html>

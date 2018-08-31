@@ -1,0 +1,28 @@
+.red {
+    color: red;
+}
+
+body{
+    width: 960px;
+    margin: 0 auto;
+}
+
+.header{
+    width: 960px;
+}
+
+.main{
+    width: 160px;
+    float: left;
+}
+
+.side{
+    width: 800px;
+    float: right;
+    background-color: #D2D0E8
+}
+
+.footer{
+    clear: both;
+    width: 960px;
+}
