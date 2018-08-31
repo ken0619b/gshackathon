@@ -9,17 +9,23 @@
 </head>
 <body>
     <header class="header">
-            こねこテラ
-            テストｗｗｗｗｗｗｗｗｗｗｗｗ
+        こねこテラ<br>ヘッダーヘッダーヘッダーヘッダーヘッダーヘッダー
     </header>
     
     <div class="main">
-        <p>aaaaaaa</p>
-        <p>aaaaaaa</p>
-        <p>aaaaaaa</p>
-        <p>aaaaaaa</p>
-        <p>aaaaaaa</p>
-        <p>aaaaaaa</p>
+        <!-- TODO:大分類中分類で出せるリストに変える -->
+        <div class="category1">
+            <p>学校の課題</p>
+        </div>
+        <div class="category2">
+            <p>起業</p>
+        </div>
+        <div class="category3">
+            <p>プログラミング言語</p>
+        </div>
+        <div class="category4">
+            <p>カテゴリー4</p>
+        </div>
     </div>
     
     <div class="side">
@@ -29,7 +35,7 @@
     </div>
     
     <footer class="footer">
-        footer(w480px h50px)
+        フッターフッターフッター<br>フッターフッターフッター
     </footer>
 
     
@@ -51,7 +57,12 @@
       };
 
       firebase.initializeApp(config);
-      var questionRef = firebase.database().ref('questions');
+      var currentCategory = 1;
+      var questionRef = firebase.database().ref('questions' + currentCategory);
+
+      /*
+        ボタン操作
+      */
 
       // 質問投稿ボタン押下
       $('#addQuestion').click(function(){
@@ -60,10 +71,10 @@
 
         // firebase更新
         var currentQuestions = []
+        console.log(currentCategory);
         questionRef.once('value', function(snapshot){
             console.log(snapshot.val().data)
             currentQuestions = snapshot.val().data
-            //console.log(snapshot.val()[0]) //key一覧取れる？
         });
 
         // 今の質問を追加
@@ -74,17 +85,71 @@
         });
       });
 
-      // 質問に更新がある場合
-      questionRef.on('value', function(snapshot){
-          console.log(snapshot.val().data)
-          questions = snapshot.val().data
-          // reset
-          $('.questions').empty();
+      /*
+        カテゴリー選択
+      */
 
-          // set questions
-          $.each(questions, function(i, q){
+      // カテゴリー1
+      $('.category1').click(function(){
+        console.log('category1');
+        currentCategory = 1;
+        questionRef = firebase.database().ref('questions' + currentCategory);
+
+        // reset
+        console.log('reset');
+        $('.questions').empty();
+ 
+        // firebase更新
+        questionRef.once('value', function(snapshot){
+            if(snapshot.val() != null){
+                questions = snapshot.val().data
+                // set questions
+                $.each(questions, function(i, q){
+                    $('.questions').append(`<p>${q}</p>`);
+                });
+            }
+        });
+      });
+
+      // カテゴリー2
+      $('.category2').click(function(){
+        console.log('category2');
+        currentCategory = 2;
+        questionRef = firebase.database().ref('questions' + currentCategory);
+        
+        // reset
+        $('.questions').empty();
+
+        questionRef.once('value', function(snapshot){
+            if(snapshot.val() != null){
+                questions = snapshot.val().data
+                // set questions
+                $.each(questions, function(i, q){
+                    $('.questions').append(`<p>${q}</p>`);
+                });
+            }
+        });
+      });
+      
+      /*
+        initialize
+      */
+
+      questionRef.on('value', function(snapshot){
+        console.log('questionRef on value');
+        //console.log(snapshot.val().data)
+        questions = snapshot.val().data
+        // reset
+        $('.questions').empty();
+
+        // set questions
+        $.each(questions, function(i, q){
             $('.questions').append(`<p>${q}</p>`);
-          });
+        });
+    });
+
+    $(document).ready(function(){
+        console.log('ready');
       });
 
     </script>
