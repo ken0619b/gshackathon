@@ -3,7 +3,7 @@
 }
 
 body{
-    width: 960px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -11,18 +11,20 @@ body{
     width: 960px;
 }
 
-.main{
-    width: 160px;
-    float: left;
-}
-
-.side{
-    width: 800px;
-    float: right;
-    background-color: #D2D0E8
-}
 
 .footer{
     clear: both;
     width: 960px;
+}
+
+.size {
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+    word-wrap:break-word;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
 }
