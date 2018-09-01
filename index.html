@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ajusa/lit@latest/dist/lit.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/modaal.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -14,20 +15,6 @@
     </header>
     <hr>
     <div class="row">    
-        <!-- <div class="2 col">
-            <div class="category1">
-                <p>学校の課題</p>
-            </div>
-            <div class="category2">
-                <p>起業</p>
-            </div>
-            <div class="category3">
-                <p>プログラミング言語</p>
-            </div>
-            <div class="category4">
-                <p>カテゴリー4</p>
-            </div>
-        </div> -->
 
         <ul class="2 col">
             <li class="category1">学校の課題</li>
@@ -53,14 +40,13 @@
         </div>
     </div>
     <footer class="footer">
-        フッターフッターフッター<br>フッターフッターフッター
+        <div>©1995-2018 TOYOTA MOTOR CORPORATION. ALL RIGHTS RESERVED.</div>
+        <div>Topへ</div>
     </footer>
 
     
-    <script
-        src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="./js/modaal.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
     <script>
 
@@ -86,27 +72,68 @@
       $('#addQuestion').click(function(){
         console.log('add question')
         var _content = $('#q').val();
-
-        questionRef = firebase.database().ref('questions' + currentCategory);
-
-        // firebase更新
-        var currentQuestions = []
-        console.log(currentCategory);
-
-        questionRef.once('value', function(snapshot){
-            //console.log(snapshot.val().data)
-            currentQuestions = snapshot.val().data
-        });
-
-        // 今の質問を追加
-        currentQuestions.push(_content);
-        console.log(currentQuestions);
-
-        questionRef.set({
-            data: currentQuestions
-        });
-        $('#q').val('');
-        refreshQuestions();
+            if(_content != ''){
+    
+            questionRef = firebase.database().ref('questions' + currentCategory);
+    
+            // firebase更新
+            var currentQuestions = []
+            console.log(currentCategory);
+    
+            questionRef.once('value', function(snapshot){
+                //console.log(snapshot.val().data)
+                currentQuestions = snapshot.val().data
+            });
+    
+            // 今の質問を追加
+            const newQuestion = {
+                content: _content,
+                answers: ['dummy']
+            }
+            
+            currentQuestions.push(newQuestion); // newQuestionの構造体を渡す
+            console.log(currentQuestions);
+    
+            questionRef.set({
+                data: currentQuestions
+            });
+            $('#q').val('');
+            refreshQuestions();
+        }
+      });
+      
+      // モーダルボタン押下
+      $('#addQuestion').click(function(){
+        console.log('add question')
+        var _content = $('#q').val();
+            if(_content != ''){
+    
+            questionRef = firebase.database().ref('questions' + currentCategory);
+    
+            // firebase更新
+            var currentQuestions = []
+            console.log(currentCategory);
+    
+            questionRef.once('value', function(snapshot){
+                //console.log(snapshot.val().data)
+                currentQuestions = snapshot.val().data
+            });
+    
+            // 今の質問を追加
+            const newQuestion = {
+                content: _content,
+                answers: ['dummy']
+            }
+            
+            currentQuestions.push(newQuestion); // newQuestionの構造体を渡す
+            console.log(currentQuestions);
+    
+            questionRef.set({
+                data: currentQuestions
+            });
+            $('#q').val('');
+            refreshQuestions();
+        }
       });
 
       /*
@@ -165,10 +192,11 @@
 
       // カテゴリーを変えたときにこれをコールしないと質問が切り替わらない。
       function refreshQuestions(){
+        // アイコン処理のところ。一旦コメントアウト
         questionRef = firebase.database().ref('questions' + currentCategory);
-        imageRef = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/gshackathon-0831.appspot.com/o/Alien.png')
-        imageurl = imageRef.getDownloadURL();
-        console.log(imageurl);
+        //imageRef = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/gshackathon-0831.appspot.com/o/Alien.png')
+        //imageurl = imageRef.getDownloadURL();
+        //console.log(imageurl);
         questionRef.on('value', function(snapshot){
         questions = snapshot.val().data
         // reset
@@ -176,8 +204,14 @@
 
         // set questions
         $.each(questions, function(i, q){
-            $('.questions').append(`<div class="card size"><p>${q}</p></div>`);
+            if(i == 0){
+                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal">show</a></div>`);
+            } else {
+                $('.questions').append(`<div class="card size"><p>${q.content}</p></div>`);
+            }
+            // $('.questions').append(`<div class="card size"><p>${q.content}</p><input type="text" ></div>`);
         });
+        $('.modal').modaal();
       });  
     }
 
@@ -193,8 +227,15 @@
 
         // set questions
         $.each(questions, function(i, q){
-            $('.questions').append(`<div class="card size"><p>${q}</p></div>`);
+            if(i == 0) {
+                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal">show</a></div>`);
+            } else {
+                $('.questions').append(`<div class="card size"><p>${q.content}</p></div>`);
+            }
+            
         });
+        $('.modal').modaal();
+        
     });
 
       /*
@@ -202,9 +243,18 @@
       */
     $(document).ready(function(){
         console.log('ready');
+        $('.modal').modaal(); // modal
     });
 
     </script>
+    
+    <div id="modal" style="display:none;">
+	    <p>これはサンプルです。</p>
+	    <div class="comments"></div>
+	    <input type="text" class="card" />
+	    <button class="btn primary">Primary Button</button>
+    </div>
+    
 </body>
 
 </html>
