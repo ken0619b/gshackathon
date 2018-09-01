@@ -1,20 +1,17 @@
-.red {
-    color: red;
-}
-
 body{
     width: 1200px;
     margin: 0 auto;
 }
 
 .header{
-    width: 960px;
+    /* width: 1200px; */
 }
 
 
 .footer{
-    clear: both;
-    width: 960px;
+    /* clear: both; */
+    /* width: 1200px; */
+
 }
 
 .size {

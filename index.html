@@ -52,7 +52,6 @@
             </div>
         </div>
     </div>
-    
     <footer class="footer">
         フッターフッターフッター<br>フッターフッターフッター
     </footer>
@@ -167,6 +166,9 @@
       // カテゴリーを変えたときにこれをコールしないと質問が切り替わらない。
       function refreshQuestions(){
         questionRef = firebase.database().ref('questions' + currentCategory);
+        imageRef = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/gshackathon-0831.appspot.com/o/Alien.png')
+        imageurl = imageRef.getDownloadURL();
+        console.log(imageurl);
         questionRef.on('value', function(snapshot){
         questions = snapshot.val().data
         // reset
@@ -182,6 +184,9 @@
       questionRef.on('value', function(snapshot){
         //console.log('questionRef on value');
         //console.log(snapshot.val().data)
+        imageRef = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/v0/b/gshackathon-0831.appspot.com/o/Alien.png')
+        imageurl = imageRef.getDownloadURL();
+        console.log(imageurl);
         questions = snapshot.val().data
         // reset
         $('.questions').empty();
