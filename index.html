@@ -102,40 +102,6 @@
         }
       });
       
-      // モーダルボタン押下
-      $('#addQuestion').click(function(){
-        console.log('add question')
-        var _content = $('#q').val();
-            if(_content != ''){
-    
-            questionRef = firebase.database().ref('questions' + currentCategory);
-    
-            // firebase更新
-            var currentQuestions = []
-            console.log(currentCategory);
-    
-            questionRef.once('value', function(snapshot){
-                //console.log(snapshot.val().data)
-                currentQuestions = snapshot.val().data
-            });
-    
-            // 今の質問を追加
-            const newQuestion = {
-                content: _content,
-                answers: ['dummy']
-            }
-            
-            currentQuestions.push(newQuestion); // newQuestionの構造体を渡す
-            console.log(currentQuestions);
-    
-            questionRef.set({
-                data: currentQuestions
-            });
-            $('#q').val('');
-            refreshQuestions();
-        }
-      });
-
       /*
         カテゴリー選択
       */
@@ -228,7 +194,8 @@
         // set questions
         $.each(questions, function(i, q){
             if(i == 0) {
-                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal">show</a></div>`);
+                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
+                $('.comments').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
             } else {
                 $('.questions').append(`<div class="card size"><p>${q.content}</p></div>`);
             }
