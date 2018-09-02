@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="./css/style.css">-->
+    <style>
+    
+        .header {
+            height: 100px;
+            line-height: 100px;
+            display: flex;
+        }
+        
+        .page-title {
+            font-size: 40px;
+        }
+        
+        .subtitle{
+            font-size: 20px;
+        }
+
+        
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            text-align: center;
+            margin-top: 30px;
+            
+            
+        }
+        
+        .card + .card {
+            margin-left: 30px;
+        }
+        
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+        
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+        
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+        
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+        
+        .container {
+            margin:0 auto;
+            display: flex;
+            flex-wrap: no-wrap;
+            justify-content: space-around;
+
+        }
+        
+        .footer{
+            background-color: #cac8c8;
+            padding:32px;
+        }
+                
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div><a href="index.html" class="page-title"><img src="img/download.png" width="50" height="50">こねこテラ</a><span class="subtitle">>>Profile List</span></div>
+        <!--<div>-->
+        <!--    <a href="profile.html">-->
+        <!--        <div class="name">DEV11 Ryoko</div>-->
+        <!--        <img class="icon" src="1000456.jpg" alt="">-->
+        <!--    </a>-->
+        <!--</div>-->
+    </header>
+    
+    
+    <div class="container">
+        
+        <div class="card">
+          <img src="img/profile1.jpg" alt="John" style="width:100%">
+          <h1>Yoshinori<br>Furuhashi</h1>
+          <p class="title">graduated</p>
+          <p>Legend</p>
+          <a href="#"><i class="fa fa-twitter"></i></a> 
+          <a href="https://www.facebook.com/profile.php?id=100007736680315" target="_blank"><i class="fa fa-facebook"></i></a> 
+          <p><button>Contact</button></p>
+        </div>
+        
+        <div class="card">
+          <img src="img/profile3.jpg" alt="John" style="width:100%">
+          <h1>Hayata<br>Satomi</h1>
+          <p class="title">Employee</p>
+          <p>G's Academy</p>
+          <a href="#"><i class="fa fa-twitter"></i></a> 
+          <a href="https://www.facebook.com/lion.vibe?fb_dtsg_ag=AdxhIHKq1GWV7lu3b77ttBN_Dnv65ht2lX7u2znzf0vKBQ%3AAdx1-L8dhtDkNjo0Pgc7f75upAn8O3T-TFWL5eIoQJ5BAw" target="_blank"><i class="fa fa-facebook"></i></a> 
+          <p><button>Contact</button></p>
+        </div>
+        
+        <div class="card">
+          <img src="img/profile4.jpg" alt="John" style="width:100%">
+          <h1>Ryotaro<br>Namba</h1>
+          <p class="title">Graduated</p>
+          <p>G's Academy</p>
+          <a href="#"><i class="fa fa-twitter"></i></a> 
+          <a href="https://www.facebook.com/ryotarow.namba?fb_dtsg_ag=AdxhIHKq1GWV7lu3b77ttBN_Dnv65ht2lX7u2znzf0vKBQ%3AAdx1-L8dhtDkNjo0Pgc7f75upAn8O3T-TFWL5eIoQJ5BAw" target="_blank"><i class="fa fa-facebook"></i></a> 
+          <p><button>Contact</button></p>
+        </div>
+        
+        <div class="card">
+          <img src="img/profile5.jpg" alt="John" style="width:100%">
+          <h1>Daisuke<br>Yamasaki</h1>
+          <p class="title">Professor</p>
+          <p>G's Academy</p>
+          <a href="#"><i class="fa fa-twitter"></i></a> 
+          <a href="https://www.facebook.com/venezia7?lst=100001293807522%3A100001798965456%3A1535861883" target="_blank"><i class="fa fa-facebook"></i></a> 
+          <p><button>Contact</button></p>
+        </div>
+        
+        <div class="card">
+          <img src="img/profile6.jpg" alt="John" style="width:100%">
+          <h1>Ryoko<br>Kawashima</h1>
+          <p class="title">Student</p>
+          <p>G's Academy</p>
+          <a href="#"><i class="fa fa-twitter"></i></a> 
+          <a href="https://www.facebook.com/ryoko.kawashima.52?fb_dtsg_ag=AdxhIHKq1GWV7lu3b77ttBN_Dnv65ht2lX7u2znzf0vKBQ%3AAdx1-L8dhtDkNjo0Pgc7f75upAn8O3T-TFWL5eIoQJ5BAw" target="_blank"><i class="fa fa-facebook"></i></a> 
+          <p><button>Contact</button></p>
+        </div>
+        
+    </div>
+
+        
+        
+        
+        
+        
+
+    <footer class="footer">
+        <div class="wrapper-footer">
+        <!-- <a href="#top"><span class="fas fa-angle-up icon-up"></span></a> -->
+        <span class="small">@2016-2018 G's Academy Tokyo All RIghts Reserved</span>
+        </div>
+    </footer>
+    
+    <script type="text/javascript">
+        
+        
+        
+    </script>
+
+    
+</body>
+</html>
