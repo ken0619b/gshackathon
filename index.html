@@ -15,7 +15,6 @@
     </header>
     <hr>
     <div class="row">    
-
         <ul class="2 col">
             <li class="category1">学校の課題</li>
             <li class="category2">起業</li>
@@ -26,7 +25,6 @@
             <li class="category">カテゴリー</li>
             <li class="category">カテゴリー</li>
         </ul>
-        
         <div class="10 col">
             <div class="questions container"></div>
             <div class="row">
@@ -102,6 +100,54 @@
         }
       });
       
+    // 質問投稿ボタン押下
+    
+    // $('#modal_show').click(function(){
+    //     console.log('add question')
+    // });
+    
+    $(document).on("click", "#modal_show", function(){
+        console.log('modal_show has been clicked')
+    });
+    
+      
+    // 回答投稿ボタン
+    
+    // $('#modal_show').click(function(){
+    //     console.log('add question')
+    // });
+    
+    $(document).on("click", "#addAnswer", function(){
+        console.log('addAnswer has been clicked');
+        const _answer = $('#answer').val();
+        if(_answer != ''){
+            console.log(_answer);
+            
+            // 質問に対する答えを追加
+            questionRef = firebase.database().ref('questions' + currentCategory + '/data/0/');
+            
+            // firebase更新
+            var currentAnswers = []
+            var _content = '';
+            console.log(currentAnswers);
+        
+            questionRef.once('value', function(snapshot){
+                console.log(snapshot.val())
+                _content = snapshot.val().content;
+                currentAnswers = snapshot.val().answers;
+            });
+        
+            // 今の質問を追加
+            currentAnswers.push(_answer);
+            
+            questionRef.set({
+                content: _content,
+                answers: currentAnswers});
+            
+            refreshQuestions();
+        }
+        
+    });
       /*
         カテゴリー選択
       */
@@ -167,11 +213,17 @@
         questions = snapshot.val().data
         // reset
         $('.questions').empty();
+        $('.comments').empty();
 
         // set questions
         $.each(questions, function(i, q){
-            if(i == 0){
-                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal">show</a></div>`);
+            if(i == 0) {
+                $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
+                $.each(q.answers, function(i, comment) {
+                    console.log(`${i}:${comment}`);
+                    $('.comments').append(`<p>${comment}</p>`);
+                });
+            // $('.comments').append(`<p>${q.content}</p>`);
             } else {
                 $('.questions').append(`<div class="card size"><p>${q.content}</p></div>`);
             }
@@ -190,19 +242,21 @@
         questions = snapshot.val().data
         // reset
         $('.questions').empty();
+        $('.comments').empty();
 
         // set questions
         $.each(questions, function(i, q){
             if(i == 0) {
                 $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
-                $('.comments').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
+                $.each(q.answers, function(i, comment) {
+                    console.log(`${i}:${comment}`);
+                    $('.comments').append(`<p>${i+1}:${comment}</p>`);
+                });
             } else {
                 $('.questions').append(`<div class="card size"><p>${q.content}</p></div>`);
             }
-            
         });
         $('.modal').modaal();
-        
     });
 
       /*
@@ -212,14 +266,13 @@
         console.log('ready');
         $('.modal').modaal(); // modal
     });
-
+    
     </script>
     
     <div id="modal" style="display:none;">
-	    <p>これはサンプルです。</p>
 	    <div class="comments"></div>
-	    <input type="text" class="card" />
-	    <button class="btn primary">Primary Button</button>
+	    <input type="text" class="card" id="answer" />
+	    <button class="btn primary" id="addAnswer">Primary Button</button>
     </div>
     
 </body>
