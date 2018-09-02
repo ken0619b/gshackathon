@@ -1,18 +1,75 @@
 body{
-    width: 1200px;
+
     margin: 0 auto;
 }
 
 .header{
+    margin-top: 10px;
     /* width: 1200px; */
 }
 
+.icon{
+    
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    display: block;
+    float: right;
+    margin-right: 15px;
+ 
+
+}
+
+.name{
+    float: right;
+    font-size: 13px;
+    margin: 21px 15px 0px 0px;
+
+}
+
+.gsimg{
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    vertical-align: top;
+
+}
+
+.wrapper-footer{
+    width: 1286px;
+    margin: 0 auto;
+    position: relative;
+}
 
 .footer{
-    /* clear: both; */
-    /* width: 1200px; */
-
+    background-color: #cac8c8;
+    padding:32px;
 }
+
+.small{
+    font-size: 14px;
+    text-align: center;
+    display: block;
+}
+
+/* .icon-up{
+    display: block;
+    color: #fafafa;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -105px;
+    right: 0;
+    background-color: #707070;
+    border-radius: 50%;
+    font-size: 40px;
+
+} */
+/* .fa-angle-up:before {
+    content: "\f106";
+    display: block;
+    padding: 7px;
+} */
 
 .size {
     width: 300px;
