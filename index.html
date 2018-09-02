@@ -46,7 +46,7 @@
         <!-- <a href="#top"><span class="fas fa-angle-up icon-up"></span></a> -->
         <span class="small">@2016-2018 G's Academy Tokyo All RIghts Reserved</span>
         </div>
-</footer>
+    </footer>
 
     
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -54,15 +54,15 @@
     <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
     <script>
 
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDp8pHdwufOls9KQOVyXqGkYOBOSHbsyWo",
-        authDomain: "gshackathon-0831.firebaseapp.com",
-        databaseURL: "https://gshackathon-0831.firebaseio.com",
-        projectId: "gshackathon-0831",
-        storageBucket: "gshackathon-0831.appspot.com",
-        messagingSenderId: "494322489954"
-      };
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyALmbwrkYjPIjDj4bjBzFzT8iZd3KesuMA",
+        authDomain: "gshackathon123.firebaseapp.com",
+        databaseURL: "https://gshackathon123.firebaseio.com",
+        projectId: "gshackathon123",
+        storageBucket: "gshackathon123.appspot.com",
+        messagingSenderId: "508468660711"
+    };
 
       firebase.initializeApp(config);
       var currentCategory = 1;
@@ -88,9 +88,27 @@
                 //console.log(snapshot.val().data)
                 currentQuestions = snapshot.val().data
             });
+
+            // 今のidの最大値を取得
+            // maxId = Math.max.apply(0, currentQuestions.map(function(q){
+            //     return q.id;
+            // }))
+            var maxId = 0;
+            console.log(`currentQuestions:${currentQuestions}`);
+            if(currentQuestions.length != 0){
+                console.log('idを計算して取得');
+                var ids = currentQuestions.map(function (q) {
+                    return q.id;
+                });
+                maxId = Math.max.apply(null, ids) + 1;
+            } else {
+                maxId = 0;
+            }
+            console.log(maxId);
     
             // 今の質問を追加
             const newQuestion = {
+                id: maxId,
                 content: _content,
                 answers: ['dummy']
             }
@@ -228,8 +246,8 @@
                 $('#question_content').append(`<h4>${q.content}</h4>`); //質問部分
                 $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
                 $.each(q.answers, function(i, comment) {
-                    console.log(`${i}:${comment}`);
-                    $('.comments').append(`<p>${comment}</p>`);
+                    // console.log(`${i}:${comment}`);
+                    $('.comments').append(`<p>${i+1}:${comment}</p>`);
                 });
             // $('.comments').append(`<p>${q.content}</p>`);
             } else {
@@ -259,7 +277,7 @@
                 $('#question_content').append(`<h4>${q.content}</h4>`); //質問部分
                 $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
                 $.each(q.answers, function(i, comment) {
-                    console.log(`${i}:${comment}`);
+                    // console.log(`${i}:${comment}`);
                     $('.comments').append(`<p>${i+1}:${comment}</p>`);
                 });
             } else {
