@@ -82,3 +82,20 @@ body{
     display: flex;
     flex-wrap: wrap;
 }
+
+ul {
+    list-style: none;
+    padding: 0px;
+  }
+
+li{
+    border: solid 1px;
+    border-color: #d8d6d6;
+    padding:10px;
+    width: 230px;
+}
+
+li:hover{
+    color:rgb(250, 112, 0);
+    background-color: rgb(255, 204, 128);
+    }
