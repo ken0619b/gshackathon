@@ -94,22 +94,22 @@
             // maxId = Math.max.apply(0, currentQuestions.map(function(q){
             //     return q.id;
             // }))
-            var maxId = 0;
-            console.log(`currentQuestions:${currentQuestions}`);
-            if(currentQuestions.length != 0){
-                console.log('idを計算して取得');
-                var ids = currentQuestions.map(function (q) {
-                    return q.id;
-                });
-                maxId = Math.max.apply(null, ids) + 1;
-            } else {
-                maxId = 0;
-            }
-            console.log(maxId);
+            // var maxId = 0;
+            // console.log(`currentQuestions:${currentQuestions}`);
+            // if(currentQuestions.length != 0){
+            //     console.log('idを計算して取得');
+            //     var ids = currentQuestions.map(function (q) {
+            //         return q.id;
+            //     });
+            //     maxId = Math.max.apply(null, ids) + 1;
+            // } else {
+            //     maxId = 0;
+            // }
+            // console.log(maxId);
     
             // 今の質問を追加
             const newQuestion = {
-                id: maxId,
+            //    id: maxId,
                 content: _content,
                 answers: ['dummy']
             }
