@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <style type="text/css">
+        .user-row {
+        margin-bottom: 14px;
+        }
+        
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+        
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+        
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+        
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+        
+        
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+        .toppad{margin-top:20px;
+        }
+        
+        .edit {
+            float: right;
+            margin-right: 40px;
+        }
+        
+        .btn {
+            background: #FF5F17;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+        }
+        
+        .panel {
+            border: 1px solid #FF5F17;
+        }
+        
+        .panel-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .img-circle {
+            hegiht: 80px;
+        }
+
+    </style>
+</head>
+<body>    
+
+    <header class="header">
+        <div>
+            <a href="profile.html">
+                <div class="name">DEV11 Ryoko</div>
+                <img class="icon" src="1000456.jpg" alt="">
+                <img class="gsimg" src="FB_IMG_1532211714730.jpg" alt="">
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="img/profile-icon.jpg" class="img-circle img-responsive"> </div>
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                        <tr>
+                            <td>名前:</td>
+                            <td>川島遼子(Ryoko Kawashima)</td>
+                        </tr>
+                        <tr>
+                            <td>所属:</td>
+                            <td>DEV11</td>
+                        </tr>
+                        <tr>
+                            <td>得意言語:</td>
+                            <td>Vue.js/Node.js</td>
+                        </tr>
+                        <tr>
+                            <td>Twitter</td>
+                            <td><a href="mailto:info@support.com">info@support.com</a></td>
+                        </tr>
+                            <td>一言</td>
+                            <td>G's入ったばかりです<br><br>ぜひ色々吸収していきたいです
+                            </td>
+                        </tr>
+                     
+                    </tbody>
+                 </table>
+                  
+                  
+                </div>
+                <a href="#" class="btn btn-primary edit">Edit</a>
+              </div>
+            </div>
+                 <div class="panel-footer">
+                        <a type="button" href="index.html" class="btn btn-sm btn-primary"><i class="fas fa-long-arrow-alt-left"></i>戻る</a>
+                        <a type="button" href="profileList.html" class="btn btn-sm btn-primary">プロフィール一覧へ<i class="fas fa-long-arrow-alt-right"></i></a>
+                 </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+        <div class="wrapper-footer">
+        <!-- <a href="#top"><span class="fas fa-angle-up icon-up"></span></a> -->
+        <span class="small">@2016-2018 G's Academy Tokyo All RIghts Reserved</span>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(".edit").on("click",function(){
+            alert("準備中"); 
+        });
+    </script>
+</body>
+</html>
