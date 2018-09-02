@@ -214,10 +214,12 @@
         // reset
         $('.questions').empty();
         $('.comments').empty();
+        $('#question_content').empty();
 
         // set questions
         $.each(questions, function(i, q){
             if(i == 0) {
+                $('#question_content').append(`<h4>${q.content}</h4>`); //質問部分
                 $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
                 $.each(q.answers, function(i, comment) {
                     console.log(`${i}:${comment}`);
@@ -243,10 +245,12 @@
         // reset
         $('.questions').empty();
         $('.comments').empty();
+        $('#question_content').empty();
 
         // set questions
         $.each(questions, function(i, q){
             if(i == 0) {
+                $('#question_content').append(`<h4>${q.content}</h4>`); //質問部分
                 $('.questions').append(`<div class="card size"><p>${q.content}</p><a href="#modal" class="modal" id="modal_show">show</a></div>`);
                 $.each(q.answers, function(i, comment) {
                     console.log(`${i}:${comment}`);
@@ -270,6 +274,8 @@
     </script>
     
     <div id="modal" style="display:none;">
+        <div id="question_content"></div>
+        <hr>
 	    <div class="comments"></div>
 	    <input type="text" class="card" id="answer" />
 	    <button class="btn primary" id="addAnswer">Primary Button</button>
